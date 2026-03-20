@@ -1,26 +1,39 @@
 # Steam Library Exporter — Export Steam Games Data to CSV (Python)
 
-Python CLI tool to **export your full Steam game library** to a CSV file with rich metadata — playtime hours, genres, user reviews, Metacritic scores, prices, community tags, and estimated ownership data.
+![Python](https://img.shields.io/badge/Python-3.10%2B-blue?logo=python)
+![License](https://img.shields.io/badge/license-MIT-green)
+![APIs](https://img.shields.io/badge/APIs-Steam%20%2B%20SteamSpy-lightgrey)
 
-Built for gamers and data enthusiasts who want to **analyze their Steam library**, explore gaming habits, compare games, or build dashboards from real Steam data.
+Python CLI tool to export your full Steam game library to a CSV file with rich metadata — playtime hours, genres, user reviews, Metacritic scores, prices, community tags, and estimated ownership data.
+
+Built for gamers and data enthusiasts who want to analyze their Steam library, explore gaming habits, compare games, or build dashboards from real Steam data.
 
 ## What Data Gets Exported
 
-Combines **3 free APIs** into a single flat CSV with 24 columns:
+Combines 3 free APIs into a single flat CSV with 24 columns:
 
 | Source | Exported Fields |
-|--------|----------------|
-| **Steam Web API** | your total playtime (hours), playtime last 2 weeks |
-| **Steam Store API** | genres, categories, developers, publishers, release date, Metacritic score, current & original price, free-to-play flag, game description, header image URL |
-| **Steam Reviews API** | total positive reviews, total negative reviews, review score description, total review count |
-| **SteamSpy API** | estimated owners, global average playtime, global median playtime, community tags |
+|---|---|
+| Steam Web API | your total playtime (hours), playtime last 2 weeks |
+| Steam Store API | genres, categories, developers, publishers, release date, Metacritic score, current & original price, free-to-play flag, game description, header image URL |
+| Steam Reviews API | total positive reviews, total negative reviews, review score description, total review count |
+| SteamSpy API | estimated owners, global average playtime, global median playtime, community tags |
+
+## Sample Output
+
+```
+appid,name,playtime_hours,metacritic_score,genres,price_current,review_score_desc,estimated_owners
+570,Dota 2,1842.3,90,Action;Free to Play,0.0,Overwhelmingly Positive,100000000-200000000
+730,Counter-Strike 2,634.1,83,Action,0.0,Very Positive,50000000-100000000
+1091500,Cyberpunk 2077,112.7,86,Action;RPG,29.99,Very Positive,10000000-20000000
+```
 
 ## Prerequisites
 
-1. **Python 3.10+** with `requests` installed
-2. **Steam Web API key** — get one free at https://steamcommunity.com/dev/apikey
-3. **Your Steam64 ID** (17-digit number) — find it at https://steamid.io
-4. **Public Steam profile** — set both profile AND game details to Public in [Steam Privacy Settings](https://steamcommunity.com/my/edit/settings)
+- Python 3.10+ with `requests` installed
+- Steam Web API key — get one free at https://steamcommunity.com/dev/apikey
+- Your Steam64 ID (17-digit number) — find it at https://steamid.io
+- Public Steam profile — set both profile AND game details to **Public** in Steam Privacy Settings
 
 ## Installation
 
@@ -50,13 +63,7 @@ python steam_export.py --key YOUR_API_KEY --steamid YOUR_STEAM64_ID --output my_
 
 Creates `steam_library.csv` (default) with these columns:
 
-```
-appid, name, playtime_hours, playtime_2weeks_hours, type, developers,
-publishers, genres, categories, release_date, metacritic_score,
-price_current, price_initial, is_free, short_description, header_image,
-total_positive, total_negative, review_score_desc, total_reviews,
-estimated_owners, avg_playtime_global, median_playtime_global, steamspy_tags
-```
+`appid`, `name`, `playtime_hours`, `playtime_2weeks_hours`, `type`, `developers`, `publishers`, `genres`, `categories`, `release_date`, `metacritic_score`, `price_current`, `price_initial`, `is_free`, `short_description`, `header_image`, `total_positive`, `total_negative`, `review_score_desc`, `total_reviews`, `estimated_owners`, `avg_playtime_global`, `median_playtime_global`, `steamspy_tags`
 
 Games are sorted by your playtime (most played first).
 
@@ -64,24 +71,22 @@ Games are sorted by your playtime (most played first).
 
 - Steam Store API is rate-limited — the script adds 1.5s delay between requests
 - SteamSpy adds 1.0s delay per game
-- **~4 seconds per game** — a 200-game library takes ~13 minutes
+- ~4 seconds per game — a 200-game library takes ~13 minutes
 - Use `--limit N` to test with a small batch first
 - Use `--no-steamspy` to cut export time by ~25%
 
 ## Use Cases
 
-- **Analyze your gaming habits** — find your most played genres, total hours invested
-- **Compare game reviews** — filter by Metacritic score, positive review ratio
+- **Analyze gaming habits** — find your most-played genres, total hours invested
+- **Compare reviews** — filter by Metacritic score or positive review ratio
 - **Track your backlog** — find unplayed games (0 hours) you own
 - **Price analysis** — see how much you spent vs. current prices
-- **Data visualization** — import CSV into pandas, Google Sheets, Tableau, Power BI
+- **Data visualization** — import CSV into pandas, Google Sheets, Tableau, or Power BI
 
 ## Security
 
-⚠️ **Never commit your API key.** The `.gitignore` excludes common sensitive files, but always verify before pushing.
-
-Your Steam Web API key is read-only and scoped to public data, but treat it like a credential.
+> ⚠️ Never commit your API key. The `.gitignore` excludes common sensitive files, but always verify before pushing. Your Steam Web API key is read-only and scoped to public data, but treat it like a credential.
 
 ## License
 
-MIT
+[MIT](LICENSE) © 2026 David Malko
