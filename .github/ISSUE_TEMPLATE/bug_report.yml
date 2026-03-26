@@ -1,0 +1,72 @@
+name: Bug Report
+description: Something isn't working as expected.
+labels: [bug]
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this bug report!
+        Please fill in as much detail as possible so we can reproduce and fix the issue quickly.
+
+  - type: input
+    id: version
+    attributes:
+      label: Steam Library Exporter version
+      description: Run `python -c "import steam_export; print(steam_export.__version__)"` and paste the output.
+      placeholder: "e.g. 1.0.0"
+    validations:
+      required: true
+
+  - type: input
+    id: python-version
+    attributes:
+      label: Python version
+      description: Run `python --version` and paste the output.
+      placeholder: "e.g. Python 3.11.4"
+    validations:
+      required: true
+
+  - type: input
+    id: os
+    attributes:
+      label: Operating system
+      placeholder: "e.g. Ubuntu 22.04, Windows 11, macOS 14 Sonoma"
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: What command did you run? What happened next?
+      placeholder: |
+        1. Run `python steam_export.py --key ... --steamid ... --limit 5`
+        2. ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behaviour
+      placeholder: "e.g. The script should export 5 rows to steam_library.csv."
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behaviour
+      placeholder: "e.g. The script exits with an error after fetching the first game."
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Full log / error output
+      description: Paste the complete terminal output.
+      render: shell
+    validations:
+      required: false

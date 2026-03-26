@@ -26,14 +26,16 @@ import time
 
 import requests
 
+__version__ = "1.0.0"
+
 # --- Endpoints ---
 OWNED_GAMES_URL = "https://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/"
 APP_DETAILS_URL = "https://store.steampowered.com/api/appdetails"
 APP_REVIEWS_URL = "https://store.steampowered.com/appreviews/{appid}"
-STEAMSPY_URL    = "https://steamspy.com/api.php"
+STEAMSPY_URL = "https://steamspy.com/api.php"
 
 # --- Rate limit delays (seconds) ---
-STORE_DELAY    = 1.5
+STORE_DELAY = 1.5
 STEAMSPY_DELAY = 1.0
 
 
@@ -211,7 +213,7 @@ def main():
     args = parser.parse_args()
 
     print(f"\n{'='*60}")
-    print(f" Steam Library Exporter")
+    print(" Steam Library Exporter")
     print(f"{'='*60}\n")
 
     games = get_owned_games(args.key, args.steamid)

@@ -1,0 +1,52 @@
+name: Feature Request
+description: Suggest a new feature or enhancement.
+labels: [enhancement]
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the idea! Please describe the problem you're trying to solve
+        and how you'd like to see it addressed.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem it solves
+      description: What can't you do today, or what is inconvenient?
+      placeholder: "e.g. I have to manually merge multiple CSV exports when I run the tool on different days."
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed solution
+      description: How would you like this to work? Include any CLI flags, output format changes, or new columns you have in mind.
+      placeholder: "e.g. Add an `--append` flag that appends new rows to an existing CSV instead of overwriting it."
+    validations:
+      required: true
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area affected
+      options:
+        - CLI flags / arguments
+        - Output columns / CSV format
+        - API data source
+        - Performance / rate limiting
+        - Error handling
+        - Documentation
+        - CI / tooling
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Have you tried any workarounds or other approaches?
+    validations:
+      required: false
