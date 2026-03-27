@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "steam-library-exporter"
+version = "1.0.0"
+description = "Export your full Steam game library to a CSV file with rich metadata from four APIs"
+readme = "README.md"
+license = "MIT"
+authors = [{ name = "David Malko", email = "davidmalko87@gmail.com" }]
+requires-python = ">=3.10"
+keywords = ["steam", "gaming", "csv", "data-export", "steam-api", "game-library", "steamspy"]
+dependencies = [
+    "requests>=2.28.0",
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Games/Entertainment",
+    "Topic :: Utilities",
+]
+
+[project.urls]
+Homepage = "https://github.com/davidmalko87/steam-library-exporter"
+Repository = "https://github.com/davidmalko87/steam-library-exporter"
+Changelog = "https://github.com/davidmalko87/steam-library-exporter/blob/main/CHANGELOG.md"
+"Bug Tracker" = "https://github.com/davidmalko87/steam-library-exporter/issues"
+
+[project.scripts]
+steam-export = "steam_export:main"
