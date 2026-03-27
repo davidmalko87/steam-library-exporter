@@ -34,3 +34,6 @@ Changelog = "https://github.com/davidmalko87/steam-library-exporter/blob/main/CH
 
 [project.scripts]
 steam-export = "steam_export:main"
+
+[tool.setuptools]
+py-modules = ["steam_export"]
