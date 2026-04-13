@@ -7,6 +7,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [1.1.0] — 2026-04-13
+
+### Added
+- **Interactive mode**: run without arguments for a guided step-by-step setup (credentials, format, sort, filters — all prompted with defaults).
+- **Environment variable support**: set `STEAM_API_KEY` and `STEAM_ID` to skip typing credentials every run; works in both CLI and interactive modes.
+- **JSON export**: `--format json` writes a structured JSON array alongside the existing CSV support.
+- **Sort options**: `--sort playtime|name|metacritic|reviews` to control output order (default: playtime descending).
+- **Min-playtime filter**: `--min-playtime N` skips games with fewer than N hours played.
+- **Progress with ETA**: each game now shows elapsed time and estimated time remaining during export.
+- **Export summary**: after writing, prints total playtime, played/unplayed counts, average Metacritic score, and top genres.
+- **`--version` flag**: prints the current version and exits.
+
+### Changed
+- `--key` and `--steamid` are no longer required when their corresponding environment variables are set.
+- Default output filename adapts to format: `steam_library.csv` or `steam_library.json`.
+
+---
+
 ## [1.0.0] — 2026-03-26
 
 ### Added
