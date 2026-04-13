@@ -1,14 +1,14 @@
 # Steam Library Exporter
 
 [![CI](https://github.com/davidmalko87/steam-library-exporter/actions/workflows/ci.yml/badge.svg)](https://github.com/davidmalko87/steam-library-exporter/actions/workflows/ci.yml)
-[![Version](https://img.shields.io/badge/version-1.0.0-blue)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-1.1.0-blue)](CHANGELOG.md)
 [![Python](https://img.shields.io/badge/Python-3.10%2B-blue?logo=python&logoColor=white)](https://www.python.org/)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 [![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20macOS%20%7C%20Linux-lightgrey)]()
 [![Last Commit](https://img.shields.io/github/last-commit/davidmalko87/steam-library-exporter)](https://github.com/davidmalko87/steam-library-exporter/commits/main)
 [![Open Issues](https://img.shields.io/github/issues/davidmalko87/steam-library-exporter)](https://github.com/davidmalko87/steam-library-exporter/issues)
 
-Export your full Steam game library to a CSV file with rich metadata from four APIs.
+Export your full Steam game library to CSV or JSON with rich metadata from four APIs.
 
 ---
 
@@ -23,12 +23,18 @@ This tool pulls playtime, genres, prices, reviews, Metacritic scores, community 
 
 | Feature | Description |
 |---|---|
+| Interactive mode | Run without arguments for a guided step-by-step setup — no flags to memorize |
 | 24 metadata columns | appid, name, playtime, genres, developers, publishers, release date, Metacritic score, prices, review counts, SteamSpy tags, and more |
+| CSV & JSON export | `--format csv` (default) or `--format json` for structured data |
 | Four API sources | Steam Web API, Steam Store API, Steam Reviews API, SteamSpy |
-| Sorted output | Games ordered by your playtime (most played first) |
+| Sort options | `--sort playtime\|name\|metacritic\|reviews` |
+| Filter unplayed | `--min-playtime N` to skip games under N hours |
+| Environment variables | Set `STEAM_API_KEY` and `STEAM_ID` once — never retype credentials |
+| Progress with ETA | Shows elapsed time and estimated time remaining per game |
+| Export summary | Prints total playtime, played/unplayed counts, top genres, and avg Metacritic |
 | Optional SteamSpy | Skip with `--no-steamspy` to cut export time by ~25% |
 | Partial export | Use `--limit N` to test with a small batch before running the full library |
-| Custom output path | Override the default `steam_library.csv` filename with `--output` |
+| Custom output path | Override the default filename with `--output` |
 | Cross-platform | Runs on Windows, macOS, and Linux wherever Python 3.10+ is installed |
 
 ---
@@ -57,11 +63,25 @@ You need two things:
 ### 3. Run
 
 ```bash
+# Interactive mode — guided step-by-step (no flags needed)
+python steam_export.py
+
 # Quick test — top 5 games by playtime
 python steam_export.py --key YOUR_API_KEY --steamid YOUR_STEAM64_ID --limit 5
 
 # Full library export
 python steam_export.py --key YOUR_API_KEY --steamid YOUR_STEAM64_ID
+
+# Use environment variables (set once, run without --key / --steamid)
+export STEAM_API_KEY=YOUR_API_KEY
+export STEAM_ID=YOUR_STEAM64_ID
+python steam_export.py
+
+# Export to JSON
+python steam_export.py --key YOUR_API_KEY --steamid YOUR_STEAM64_ID --format json
+
+# Sort by name, skip unplayed games
+python steam_export.py --key YOUR_API_KEY --steamid YOUR_STEAM64_ID --sort name --min-playtime 1
 
 # Faster — skip SteamSpy data
 python steam_export.py --key YOUR_API_KEY --steamid YOUR_STEAM64_ID --no-steamspy
@@ -76,11 +96,24 @@ python steam_export.py --key YOUR_API_KEY --steamid YOUR_STEAM64_ID --output my_
 
 | Flag | Required | Default | Description |
 |---|---|---|---|
-| `--key KEY` | Yes | — | Steam Web API key |
-| `--steamid STEAMID` | Yes | — | Steam64 ID (17-digit number) |
-| `--output OUTPUT` | No | `steam_library.csv` | Output CSV file path |
+| `--key KEY` | Yes* | — | Steam Web API key |
+| `--steamid STEAMID` | Yes* | — | Steam64 ID (17-digit number) |
+| `--output OUTPUT` | No | `steam_library.<format>` | Output file path |
+| `--format FORMAT` | No | `csv` | Export format: `csv` or `json` |
+| `--sort FIELD` | No | `playtime` | Sort by: `playtime`, `name`, `metacritic`, or `reviews` |
+| `--min-playtime N` | No | `0` (all) | Minimum playtime in hours to include a game |
 | `--no-steamspy` | No | off | Skip SteamSpy API calls (faster export) |
 | `--limit N` | No | `0` (all) | Export only the top N games by playtime |
+| `--version` | No | — | Print version and exit |
+
+*\* Not required if the corresponding environment variable is set.*
+
+### Environment Variables
+
+| Variable | Replaces |
+|---|---|
+| `STEAM_API_KEY` | `--key` |
+| `STEAM_ID` | `--steamid` |
 
 ---
 

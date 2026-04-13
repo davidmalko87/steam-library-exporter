@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "steam-library-exporter"
-version = "1.0.0"
+version = "1.1.0"
 description = "Export your full Steam game library to a CSV file with rich metadata from four APIs"
 readme = "README.md"
 license = "MIT"
