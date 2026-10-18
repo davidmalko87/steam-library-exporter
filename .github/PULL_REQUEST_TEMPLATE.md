@@ -17,7 +17,7 @@
 ## Checklist
 
 - [ ] Tested locally with a real Steam API key and Steam64 ID (or `--limit 5` for a quick run)
-- [ ] `flake8 steam_export.py --max-line-length=100` passes with no errors
-- [ ] `__version__` in `steam_export.py` bumped according to the [semver policy](CONTRIBUTING.md) (if behaviour changed)
+- [ ] `ruff check .` passes with no errors (same check as CI)
+- [ ] `__version__` in `steam_export.py` and `version` in `pyproject.toml` bumped according to the [semver policy](https://github.com/davidmalko87/steam-library-exporter/blob/main/CONTRIBUTING.md#versioning-policy) (if behaviour changed)
 - [ ] New entry added to `CHANGELOG.md` (if behaviour changed)
 - [ ] README updated if new flags, columns, or usage patterns were introduced
