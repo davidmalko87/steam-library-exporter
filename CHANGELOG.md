@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [1.1.1] — 2026-10-18
+
+### Changed
+- **README:** install from PyPI with `pip` or `pipx` (plus how to upgrade), run it with the `steam-export` console
+  command, where the export file is written, and setting credentials in PowerShell; the docs were re-checked against the CLI and corrected.
+  The package has been on PyPI as `steam-library-exporter` (console command `steam-export`) since 1.1.0.
+- **CI:** pin `ruff<0.16` (0.16 changed its default rules and failed lint on unchanged code), and add a job that
+  builds the sdist and wheel, runs `twine check`, installs the wheel and runs `steam-export --help`.
+
+Docs and CI only — no code changes.
+
+---
+
 ## [1.1.0] — 2026-04-13
 
 ### Added
