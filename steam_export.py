@@ -33,7 +33,7 @@ import time
 
 import requests
 
-__version__ = "1.1.0"
+__version__ = "1.1.1"
 
 # --- Endpoints ---
 OWNED_GAMES_URL = "https://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/"
