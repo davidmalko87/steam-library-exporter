@@ -73,7 +73,7 @@ pip install -r requirements.txt
 python steam_export.py --help                      # same flags as steam-export
 ```
 
-> **Where files live:** No config or `.env` file is read — credentials come only from `--key` / `--steamid` or the `STEAM_API_KEY` / `STEAM_ID` environment variables set in your shell. The export is written to the folder you run `steam-export` from as `steam_library.csv` (or `steam_library.json`) unless you pass `--output PATH`; nothing else is written, and progress goes to the terminal only. A clone behaves the same way.
+> **Where files live:** No config or `.env` file is read — credentials come only from `--key` / `--steamid`, the interactive prompts, or the `STEAM_API_KEY` / `STEAM_ID` environment variables set in your shell. The export is written to the folder you run `steam-export` from as `steam_library.csv` (or `steam_library.json`) unless you pass `--output PATH` or enter another name in interactive mode; nothing else is written, and progress goes to the terminal only. A clone behaves the same way.
 
 ### 2. Configure
 
@@ -170,7 +170,7 @@ steam-export --format csv
 
 - With `--no-steamspy` the last four (SteamSpy) columns are left out entirely, not blank, so the file has 20 columns.
 - `playtime_hours` and `playtime_2weeks_hours` are your own playtime in hours; `avg_playtime_global` and `median_playtime_global` are SteamSpy figures in minutes.
-- `price_current` and `price_initial` are Steam's formatted price strings (e.g. `$29.99`) in the currency Steam picks for your region; they are empty for free games.
+- `price_current` is Steam's formatted price string (e.g. `$29.99`) in the currency Steam picks for your region. `price_initial` is the pre-discount price and is only filled while the game is on sale; Steam leaves it empty otherwise. Both are empty for free games.
 - List fields (`developers`, `publishers`, `genres`, `categories`, `steamspy_tags`) are joined with `, `; `estimated_owners` is SteamSpy's range as returned (e.g. `20,000,000 .. 50,000,000`).
 - Missing values are empty strings in both formats — JSON output uses `""`, not `null`.
 
@@ -228,7 +228,7 @@ steam-library-exporter/
 
 > Never commit your API key. The `.gitignore` excludes common credential files (`.env`, `*.key`), but always verify before pushing.
 
-Your Steam Web API key is read-only and scoped to public data, but treat it like any credential. On shared machines, prefer the environment variables over `--key`: command-line arguments are saved in your shell history and visible to other users in the process list.
+Your Steam Web API key is read-only and scoped to public data, but treat it like any credential. On shared machines, prefer interactive mode or the environment variables over `--key`: command-line arguments are visible to other users in the process list. Anything typed on the command line, an `export STEAM_API_KEY=...` line included, is also saved in your shell history.
 
 ---
 
