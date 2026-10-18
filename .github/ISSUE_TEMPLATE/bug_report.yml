@@ -13,8 +13,8 @@ body:
     id: version
     attributes:
       label: Steam Library Exporter version
-      description: Run `python -c "import steam_export; print(steam_export.__version__)"` and paste the output.
-      placeholder: "e.g. 1.0.0"
+      description: Run `steam-export --version` (or `python steam_export.py --version` from a clone) and paste the output. Please also say how you installed it (pip, pipx or git clone).
+      placeholder: "e.g. steam-export 1.1.0 (pipx)"
     validations:
       required: true
 
@@ -41,7 +41,7 @@ body:
       label: Steps to reproduce
       description: What command did you run? What happened next?
       placeholder: |
-        1. Run `python steam_export.py --key ... --steamid ... --limit 5`
+        1. Run `steam-export --key ... --steamid ... --limit 5`
         2. ...
     validations:
       required: true
@@ -66,7 +66,7 @@ body:
     id: logs
     attributes:
       label: Full log / error output
-      description: Paste the complete terminal output.
+      description: Paste the complete terminal output. Remove your API key first — error messages can include it (`key=...`).
       render: shell
     validations:
       required: false
